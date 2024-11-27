@@ -1,0 +1,9 @@
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+    <div *ngFor="let character of characters" class="card">
+      <img [src]="character.image" alt="{{ character.name }}">
+      <h3>{{ character.name }}</h3>
+      <p>{{ character.status }} - {{ character.species }}</p>
+      <p>Location: {{ character.location.name }}</p>
+    </div>
+</div>
+  
