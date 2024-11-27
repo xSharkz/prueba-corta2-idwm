@@ -1,9 +1,11 @@
 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
-    <div *ngFor="let character of characters" class="card">
-      <img [src]="character.image" alt="{{ character.name }}">
-      <h3>{{ character.name }}</h3>
-      <p>{{ character.status }} - {{ character.species }}</p>
-      <p>Location: {{ character.location.name }}</p>
+    <div *ngFor="let character of characters" class="max-w-xs rounded overflow-hidden shadow-lg">
+      <img class="w-full" [src]="character.image" alt="{{ character.name }}">
+      <div class="px-6 py-4">
+        <h3 class="font-bold text-xl mb-2">{{ character.name }}</h3>
+        <p class="text-gray-700 text-base">{{ character.status }} - {{ character.species }}</p>
+        <p class="text-gray-600 text-sm">Location: {{ character.location.name }}</p>
+      </div>
     </div>
 </div>
   

@@ -1,20 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
 import { RickAndMortyService } from './services/rick-and-morty.service';
 import { CharacterListComponent } from './components/character-list/character-list.component';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
   standalone: true,
-  imports: [CommonModule, HttpClientModule, CharacterListComponent],
+  imports: [CommonModule, FormsModule, CharacterListComponent],
 })
 export class AppComponent implements OnInit {
   characters: any[] = [];
   nextPage: string | null = null;
   prevPage: string | null = null;
+  searchName: string = '';
 
   constructor(private rickAndMortyService: RickAndMortyService) {}
 
@@ -31,6 +32,19 @@ export class AppComponent implements OnInit {
       },
       (error) => {
         console.error('Error al cargar los personajes', error);
+      }
+    );
+  }
+
+  searchCharacters() {
+    this.rickAndMortyService.searchCharacters(this.searchName).subscribe(
+      (data: any) => {
+        this.characters = data.results;
+        this.nextPage = data.info.next;
+        this.prevPage = data.info.prev;
+      },
+      (error) => {
+        console.error('Error al buscar personajes', error);
       }
     );
   }
