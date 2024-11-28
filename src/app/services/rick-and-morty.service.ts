@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ApiResponse } from '../interfaces/character';
@@ -9,7 +9,8 @@ import { ApiResponse } from '../interfaces/character';
 export class RickAndMortyService {
   private apiUrl = 'https://rickandmortyapi.com/api/character';
 
-  constructor(private http: HttpClient) {}
+  
+  private http = inject(HttpClient);
 
   getCharacters(page: number = 1): Observable<ApiResponse> {
     return this.http.get<ApiResponse>(`${this.apiUrl}?page=${page}`);

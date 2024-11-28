@@ -3,6 +3,7 @@ import { RickAndMortyService } from './services/rick-and-morty.service';
 import { CharacterListComponent } from './components/character-list/character-list.component';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { initFlowbite } from 'flowbite';
 
 @Component({
   selector: 'app-root',
@@ -19,8 +20,9 @@ export class AppComponent implements OnInit {
 
   constructor(private rickAndMortyService: RickAndMortyService) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.loadCharacters();
+    initFlowbite();
   }
 
   loadCharacters(page: number = 1) {

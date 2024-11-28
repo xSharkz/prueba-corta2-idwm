@@ -5,7 +5,7 @@ export interface Character {
     status: string;
     species: string;
     location: { name: string };
-  }
+}
   
 export interface ApiResponse {
 results: Character[];
